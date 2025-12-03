@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Sanal Ortam (Virtual Environment)
+venv/
+.venv/
+env/
+.env/
+venv.bak/
+
+# Hassas Bilgiler
+.env
