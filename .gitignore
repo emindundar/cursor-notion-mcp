@@ -1,8 +1,9 @@
-# Python
+# Python - Gereksiz dosyalar
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
 
 # Sanal Ortam (Virtual Environment)
 venv/
@@ -13,3 +14,11 @@ venv.bak/
 
 # Hassas Bilgiler
 .env
+
+# IDE ve OS'a özel dosyalar
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary Files
+.tmp.driveupload/

@@ -1,118 +1,101 @@
-# Notion Asistanı (cursor-notion-mcp)
+# Cursor Notion Assistant - Stajyerinizin Yeni En İyi Arkadaşı
 
-Cursor IDE'yi Notion ile konuşturan, notlarınızı, görevlerinizi ve kod parçacıklarınızı yapay zeka yardımıyla doğrudan Notion'a kaydetmenizi sağlayan bir Python projesidir. Artık parlak fikirlerinizi veya önemli kod bloklarını kaybetmek yok!
+Kod yazarken aklınıza gelen parlak fikirleri, yapılacaklar listesini veya o kritik kod parçasını anında Notion'a kaydetmek ne kadar güzel olurdu, değil mi? Peki ya gün sonunda "Bugün ne yaptım?" diye düşünmek yerine, tek bir komutla tüm Git geçmişinizi özetleyip rapor haline getirebilseydiniz?
+
+**Cursor Notion Assistant** tam olarak bunu yapıyor. Cursor IDE'nizin içinden ayrılmadan, Notion'ı kişisel veritabanınız, Git'i ise hafızanız gibi kullanmanızı sağlar.
+
+## Neler Yapabilir?
+
+- **Hafızanız Olsun:** Kod bloklarını, notları, görevleri doğrudan Notion'a kaydedin.
+- **Günlük Rapor Asistanı:** `git log` ve `git diff` komutlarını çalıştırarak gün içinde yaptığınız tüm değişiklikleri analiz için hazırlar. Siz sadece "Bu özeti Notion'a rapor olarak ekle" deyin, gerisini o halletsin.
+- **Notion'da Arayın:** "Geçen hafta kaydettiğim o API linki neredeydi?" diye düşünmeyin. Asistan sizin için tüm Notion çalışma alanınızda arama yapar.
+- **Görevlerinizi Yönetin:** Aklınıza gelen bir yapılacak işi anında Notion'daki görev listenize ekleyin.
 
 ---
 
-## Kurulum
+## Kurulum (Sadece 5 Dakika)
 
-Projeyi bilgisayarınıza kurup çalıştırmak sadece birkaç dakika sürer.
+### Adım 1: Projeyi Bilgisayarınıza İndirin
 
-### Adım 1: Projeyi Klonlama
-
-Öncelikle terminali açın ve projeyi bilgisayarınıza klonlayın:
+Terminali açın ve projeyi klonlayın:
 
 ```bash
-git clone https://github.com/emindundar/cursor-notion-mcp.git
+git clone https://github.com/KULLANICI_ADINIZ/cursor-notion-mcp.git
 cd cursor-notion-mcp
 ```
 
-### Adım 2: Sanal Ortam ve Bağımlılıklar
+### Adım 2: Sanal Ortam ve Kütüphaneler
 
-Projeyi sisteminizdeki diğer Python paketlerinden izole etmek için bir sanal ortam (virtual environment) oluşturalım.
+Projeyi sisteminizden izole bir sanal ortama kuralım.
 
-**Windows:**
+- **Windows:**
+  ```bash
+  python -m venv venv
+  .\venv\Scripts\activate
+  ```
+- **macOS / Linux:**
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
 
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-**macOS / Linux:**
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-Sanal ortam aktifken, gerekli kütüphaneleri `requirements.txt` dosyasından yükleyin:
+Gerekli kütüphaneleri yükleyin:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Adım 3: Notion API Anahtarı ve Sayfa Kimliği
+### Adım 3: Notion API Anahtarı Nasıl Alınır?
 
-Bu asistanın Notion hesabınıza erişebilmesi için iki bilgiye ihtiyacımız var:
+- [Notion My Integrations](https://www.notion.so/my-integrations) sayfasına gidin ve **"+ New integration"** oluşturun.
+- Entegrasyona bir isim verin ve "Submit" deyin.
+- "Secrets" bölümündeki **"Internal Integration Token"** değerini kopyalayın.
+- **En Önemli Adım:** Notlarınızı ekleyeceğiniz Notion sayfasına gidin, sağ üstteki üç noktaya (`...`) tıklayın, **"+ Add connections"** menüsünden az önce oluşturduğunuz entegrasyonu seçip izin verin.
 
-**1. Notion API Anahtarı (NOTION_API_KEY):**
+### Adım 4: `.env` Dosyasını Oluşturun
 
-- [Notion My Integrations](https://www.notion.so/my-integrations) sayfasına gidin.
-- **"+ New integration"** butonuna tıklayın.
-- Entegrasyonunuza bir isim verin (Örn: "Cursor Asistanı") ve "Submit" deyin.
-- "Secrets" bölümündeki **"Internal Integration Token"** değerini kopyalayın. Bu sizin API anahtarınızdır.
-- **ÖNEMLİ:** Asistanın yazacağı Notion sayfasına gidin, sağ üstteki üç noktaya (`...`) tıklayın, **"+ Add connections"** menüsünden oluşturduğunuz entegrasyonu (Örn: "Cursor Asistanı") seçin ve erişim izni verin.
-
-**2. Kök Sayfa Kimliği (ROOT_PAGE_ID):**
-
-- Notlarınızın, görevlerinizin ve kodlarınızın ekleneceği Notion sayfasını açın.
-- Tarayıcınızın adres çubuğundaki URL'ye bakın. URL'nin sonundaki 32 karakterlik alfanümerik kod, sizin sayfa kimliğinizdir.
-- **Örnek:** `https://www.notion.so/Not-Defterim-a1b2c3d4e5f678901234567890abcdef`
-- Buradaki ID: `a1b2c3d4e5f678901234567890abcdef`
-
-### Adım 4: .env Dosyasını Oluşturma
-
-Proje klasöründeki `.env.example` dosyasını kopyalayıp `.env` adında yeni bir dosya oluşturun. Ardından bir önceki adımda aldığınız bilgileri bu dosyanın içine yapıştırın.
+`.env.example` dosyasını kopyalayıp `.env` adıyla yeni bir dosya oluşturun. İçine Notion'dan aldığınız **API Anahtarını** ve notlarınızı eklemek istediğiniz **Sayfa Kimliğini** (URL'deki 32 haneli kod) yapıştırın.
 
 ```ini
-NOTION_API_KEY=buraya_kopyaladığınız_api_anahtarını_yapıştırın
-ROOT_PAGE_ID=buraya_kopyaladığınız_sayfa_kimliğini_yapıştırın
+NOTION_API_KEY=secret_...
+NOTION_PAGE_ID=a1b2c3d4e5f678901234567890abcdef
 ```
 
 ---
 
-##  Cursor'a Nasıl Eklenir?
+## Cursor'a Entegrasyon
 
-1. Cursor'da `Ctrl/Cmd + Shift + P` tuşlarına basıp **"Configure Agent (MCP)"** seçeneğini açın.
-2. Açılan `mcp.json` dosyasına aşağıdaki `providers` listesine yeni bir satır ekleyin.
-3. **`command`** kısmına projenizin bilgisayarınızdaki tam yolunu yazdığınızdan emin olun.
+1. Cursor'da `Ctrl/Cmd + Shift + P` ile komut paletini açın ve **"Configure Agent (MCP)"** seçin.
+2. `mcp.json` dosyasına, projenizin tam yolunu gösteren aşağıdaki satırı ekleyin.
 
 ```json
 {
   "providers": [
     {
       "name": "NotionAssistant",
-      "command": "python C:\\Users\\KULLANICI\\Desktop\\cursor-notion-mcp\\server.py (doğru path'i yazdığınızdan emin olun)"
+      "command": "python /path/to/your/project/cursor-notion-mcp/server.py"
     }
-    // Varsa diğer provider'larınız...
   ]
 }
 ```
 
->  **İpucu:** Proje klasöründeyken terminale `pwd` (macOS/Linux) veya `cd` (Windows) yazarak tam yolu kolayca alabilirsiniz.
+> **İpucu:** Proje klasöründeyken terminale `pwd` (macOS/Linux) veya `cd` (Windows) yazarak tam yolu kolayca alabilirsiniz.
 
 ---
 
-##  Neler Yapabilirsin? (Örnek Promptlar)
+## Örnek Promptlar
 
-Artık `@NotionAssistant` etiketiyle asistanı çağırabilirsin!
+Artık `@NotionAssistant` ile sohbet etmeye hazırsınız!
 
-**Görev Eklemek İçin:**
+- **Gün Sonu Raporu Oluşturma (2 Adımda):**
+  1. `@NotionAssistant bugün yaptığım tüm git değişikliklerinin bir özetini çıkar.`
+  2. (Gelen özeti kopyalayın ve...) `@NotionAssistant bu metni "Bugünün Gün Sonu Raporu" başlığıyla Notion'a ekle.`
 
-> `@NotionAssistant Notion'a "Haftalık raporu tamamla" diye bir görev ekle.`
+- **Kod Kaydetme:**
+  > `@NotionAssistant bu kodu "Kullanıcı girişi için özel hook" açıklamasıyla javascript dilinde kaydet.`
 
-**Not Almak İçin:**
+- **Görev Ekleme:**
+  > `@NotionAssistant "Yeni UI bileşenlerini test et" diye bir görev ekle.`
 
-> `@NotionAssistant "Proje Fikirleri" başlığıyla yeni bir not oluştur. İçeriği şöyle olsun: "Notion entegrasyonu ile çalışan bir blog platformu yapabiliriz."`
-
-**Kod Kaydetmek İçin:**
-
-> `@NotionAssistant bu kodu "Firebase user stream" açıklamasıyla dart dilinde kaydet.`
-> 
-> ```dart
-> Stream<User?> get userChanges => FirebaseAuth.instance.userChanges();
-> ```
-
-**Notion'da Arama Yapmak İçin:**
-
-> `@NotionAssistant Notion'da "veritabanı şeması" diye arat.`
+- **Arama Yapma:**
+  > `@NotionAssistant Notion'da "Stripe API anahtarları" diye arat.`
