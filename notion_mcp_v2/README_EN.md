@@ -113,22 +113,28 @@ NOTION_PAGE_ID=a1b2c3d4e5f678901234567890abcdef
 ## 🔧 Cursor Integration
 
 1. In Cursor, open the command palette with `Ctrl/Cmd + Shift + P` and select **"Configure Agent (MCP)"**.
-2. Add the following to your `mcp.json` file with the full path to your project:
+2. Add the following configuration to the opened `mcp.json` file:
 
 ```json
 {
-  "providers": [
-    {
-      "name": "NotionAssistant",
-      "command": "python /Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/server.py"
+  "mcpServers": {
+    "notion-assistant": {
+      "command": "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/venv/bin/python",
+      "args": [
+        "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/server.py"
+      ]
     }
-  ]
+  }
 }
 ```
 
-> **💡 Tip:** While in the project folder, type `pwd` (macOS/Linux) or `cd` (Windows) in the terminal to easily get the full path.
+> **⚠️ IMPORTANT:** 
+> - Use the **virtual environment's Python** in the `command` field (full path)
+> - Update the path in `args` to match your system
+> - While in the project folder, type `pwd` in the terminal to get the full path
+> - On Windows, the path will be: `C:\\Users\\...\\notion_mcp_v2\\venv\\Scripts\\python.exe`
 
-3. Restart Cursor or reload the MCP server.
+3. Save the file and restart Cursor.
 
 ---
 

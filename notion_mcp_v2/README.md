@@ -113,22 +113,28 @@ NOTION_PAGE_ID=a1b2c3d4e5f678901234567890abcdef
 ## 🔧 Cursor'a Entegrasyon
 
 1. Cursor'da `Ctrl/Cmd + Shift + P` ile komut paletini açın ve **"Configure Agent (MCP)"** seçin.
-2. `mcp.json` dosyasına, projenizin tam yolunu gösteren aşağıdaki satırı ekleyin:
+2. Açılan `mcp.json` dosyasına aşağıdaki konfigürasyonu ekleyin:
 
 ```json
 {
-  "providers": [
-    {
-      "name": "NotionAssistant",
-      "command": "python /Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/server.py"
+  "mcpServers": {
+    "notion-assistant": {
+      "command": "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/venv/bin/python",
+      "args": [
+        "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/server.py"
+      ]
     }
-  ]
+  }
 }
 ```
 
-> **💡 İpucu:** Proje klasöründeyken terminale `pwd` (macOS/Linux) veya `cd` (Windows) yazarak tam yolu kolayca alabilirsiniz.
+> **⚠️ ÖNEMLİ:** 
+> - `command` kısmında **sanal ortamın Python'unu** kullanın (tam yol)
+> - `args` içindeki yolu kendi sisteminize göre düzenleyin
+> - Proje klasöründeyken terminale `pwd` yazarak tam yolu alabilirsiniz
+> - Windows'ta yol şu şekilde olur: `C:\\Users\\...\\notion_mcp_v2\\venv\\Scripts\\python.exe`
 
-3. Cursor'ı yeniden başlatın veya MCP sunucusunu reload edin.
+3. Dosyayı kaydedin ve Cursor'ı yeniden başlatın.
 
 ---
 
