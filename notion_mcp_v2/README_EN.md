@@ -15,6 +15,38 @@ Imagine being able to instantly save brilliant ideas, to-do lists, or critical c
 
 ## 🚀 Installation (Just 5 Minutes)
 
+> **⚠️ IMPORTANT:** This project requires **Python 3.10 or higher**. If your system has Python 3.9 or older, you must install Python 3.10+ first.
+
+### Step 0: Check Python Version
+
+Run this command in your terminal:
+
+```bash
+python3 --version
+```
+
+If the version is less than 3.10 (e.g., Python 3.9.6), follow these steps:
+
+**For macOS - Install Python 3.12 with Homebrew:**
+
+```bash
+# Install Homebrew if you don't have it:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Python 3.12:
+brew install python@3.12
+
+# Verify installation:
+python3.12 --version
+```
+
+**For Linux:**
+
+```bash
+sudo apt update
+sudo apt install python3.12 python3.12-venv
+```
+
 ### Step 1: Navigate to Project Directory
 
 Open your terminal and navigate to this folder:
@@ -27,8 +59,13 @@ cd /Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2
 
 Let's set up the project in an isolated virtual environment.
 
-- **macOS / Linux:**
+- **macOS / Linux (if Python 3.10+ is installed):**
   ```bash
+  # If you installed Python 3.12:
+  python3.12 -m venv venv
+  source venv/bin/activate
+  
+  # OR if your system Python is 3.10+:
   python3 -m venv venv
   source venv/bin/activate
   ```

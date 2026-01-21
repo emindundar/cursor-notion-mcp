@@ -15,6 +15,38 @@ Kod yazarken aklınıza gelen parlak fikirleri, yapılacaklar listesini veya o k
 
 ## 🚀 Kurulum (Sadece 5 Dakika)
 
+> **⚠️ ÖNEMLİ:** Bu proje **Python 3.10 veya üzeri** gerektirir. Sisteminizde Python 3.9 veya daha eski bir sürüm varsa, önce Python 3.10+ kurmanız gerekir.
+
+### Adım 0: Python Sürümünü Kontrol Edin
+
+Terminalde şu komutu çalıştırın:
+
+```bash
+python3 --version
+```
+
+Eğer sürüm 3.10'dan küçükse (örn: Python 3.9.6), aşağıdaki adımları izleyin:
+
+**macOS için Homebrew ile Python 3.12 Kurulumu:**
+
+```bash
+# Homebrew yoksa önce kurun:
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Python 3.12'yi kurun:
+brew install python@3.12
+
+# Kurulumu doğrulayın:
+python3.12 --version
+```
+
+**Linux için:**
+
+```bash
+sudo apt update
+sudo apt install python3.12 python3.12-venv
+```
+
 ### Adım 1: Projeyi Bilgisayarınıza İndirin
 
 Terminali açın ve bu klasöre gidin:
@@ -27,8 +59,13 @@ cd /Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2
 
 Projeyi sisteminizden izole bir sanal ortama kuralım.
 
-- **macOS / Linux:**
+- **macOS / Linux (Python 3.10+ kuruluysa):**
   ```bash
+  # Python 3.12 kurduysanız:
+  python3.12 -m venv venv
+  source venv/bin/activate
+  
+  # VEYA sistem Python'unuz 3.10+ ise:
   python3 -m venv venv
   source venv/bin/activate
   ```
