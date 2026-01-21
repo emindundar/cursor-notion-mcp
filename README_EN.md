@@ -49,11 +49,14 @@ sudo apt install python3.12 python3.12-venv
 
 ### Step 1: Navigate to Project Directory
 
-Open your terminal and navigate to this folder:
+Open your terminal and navigate to the project folder:
 
 ```bash
-cd /Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2
+cd /path/to/cursor-notion-mcp
 ```
+
+> **💡 Note:** Replace `/path/to/` with the actual path where you cloned the project.
+> Example: `cd ~/Documents/cursor-notion-mcp`
 
 ### Step 2: Virtual Environment and Libraries
 
@@ -119,9 +122,9 @@ NOTION_PAGE_ID=a1b2c3d4e5f678901234567890abcdef
 {
   "mcpServers": {
     "notion-assistant": {
-      "command": "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/venv/bin/python",
+      "command": "/FULL/PATH/TO/PROJECT/venv/bin/python",
       "args": [
-        "/Users/emindundar/ProjeBelgeleri/cursor-notion-mcp/notion_mcp_v2/server.py"
+        "/FULL/PATH/TO/PROJECT/server.py"
       ]
     }
   }
@@ -129,10 +132,13 @@ NOTION_PAGE_ID=a1b2c3d4e5f678901234567890abcdef
 ```
 
 > **⚠️ IMPORTANT:** 
+> - Replace `/FULL/PATH/TO/PROJECT/` with the **actual full path** to your project
 > - Use the **virtual environment's Python** in the `command` field (full path)
-> - Update the path in `args` to match your system
-> - While in the project folder, type `pwd` in the terminal to get the full path
-> - On Windows, the path will be: `C:\\Users\\...\\notion_mcp_v2\\venv\\Scripts\\python.exe`
+> - While in the project folder, type `pwd` (macOS/Linux) or `cd` (Windows) in the terminal to get the full path
+> 
+> **Example paths:**
+> - macOS/Linux: `/Users/username/Documents/cursor-notion-mcp/venv/bin/python`
+> - Windows: `C:\\Users\\username\\Documents\\cursor-notion-mcp\\venv\\Scripts\\python.exe`
 
 3. Save the file and restart Cursor.
 
@@ -196,7 +202,7 @@ You're now ready to chat with `@NotionAssistant`!
 
 ### Getting "Missing environment variable" error
 
-- Make sure the `.env` file is in the `notion_mcp_v2` folder
+- Make sure the `.env` file is in the project folder
 - Verify that `NOTION_API_KEY` and `NOTION_PAGE_ID` are correctly entered
 
 ### "Notion client could not be initialized" error
